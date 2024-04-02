@@ -7,7 +7,7 @@ This repository contains a project work for the "Web Development" discipline as 
 Project Contributors
 
 - Abdullina Alina
-- Abdurakhimov Abdusalam
+- Abdurakhimov Abdussalam
 - Khan Denis
 
 ## Features
