@@ -24,7 +24,7 @@ To get started with our To-Do App, follow these steps:
 
 1. **Clone the Repository**: Clone this repository to your local machine using the following command:
    ```
-   git clone https://github.com/your-username/todo-app.git
+   git clone https://github.com/abdusss111/wd2024-project.git
    ```
 
 2. **Install Dependencies**: Navigate to the project directory and install the necessary dependencies:
