@@ -6,9 +6,9 @@ This repository contains a project work for the "Web Development" discipline as 
 
 Project Contributors
 
-Abdurakhimov Abdusalam
-Abdullina Alina
-Khan Denis
+-Abdullina Alina
+-Abdurakhimov Abdusalam
+-Khan Denis
 
 ## Features
 
