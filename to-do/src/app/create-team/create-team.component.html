@@ -1,0 +1,13 @@
+<p>create-team works!</p>
+
+<p *ngFor="let i of items">
+    {{i}}
+</p>
+<label for="name">Name: </label>
+<input id="name" type="text" [formControl]="teamName">
+<div>
+    <div *ngFor="let input of inputs">
+        <input type="text">
+    </div>
+    <button (click)="addInput()">Add Input</button>
+</div>
