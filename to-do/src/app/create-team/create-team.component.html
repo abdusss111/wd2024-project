@@ -1,13 +1,14 @@
-<p>create-team works!</p>
+<form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+    <label for="team-name">Team name: </label>
+    <input id="team-name" type="text" formControlName="teamName">
 
-<p *ngFor="let i of items">
-    {{i}}
-</p>
-<label for="name">Name: </label>
-<input id="name" type="text" [formControl]="teamName">
-<div>
-    <div *ngFor="let input of inputs">
-        <input type="text">
+    <div formArrayName="teammates">
+        <div *ngFor="let teammate of teammates.controls; let i = index">
+            <label for="teammate{{ i }}">Teammate email:</label>
+            <input id="teammate-{{ i }}" type="text" [formControlName]="i">
+        </div>
+        <button type="button" (click)="addTeammate()">Add another teammate</button>
     </div>
-    <button (click)="addInput()">Add Input</button>
-</div>
+
+    <button type="submit" [disabled]="!teamForm.valid">Submit</button>    
+</form>
