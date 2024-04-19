@@ -1,14 +1,15 @@
-<form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
-    <label for="team-name">Team name: </label>
-    <input id="team-name" type="text" formControlName="teamName">
-
-    <div formArrayName="teammates">
-        <div *ngFor="let teammate of teammates.controls; let i = index">
-            <label for="teammate{{ i }}">Teammate email:</label>
-            <input id="teammate-{{ i }}" type="text" [formControlName]="i">
+<div class="container">
+    <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+        <h1>Create Team</h1>
+        <label id="team"for="team-name">Team name:</label>
+        <input id="team-name" type="text" formControlName="teamName" placeholder="Team name">
+        <div id="teammate-array" formArrayName="teammates">
+            <label for="teammate" id="team-email">Teammate emails:</label>
+            <div *ngFor="let teammate of teammates.controls; let i = index">
+                <input id="teammate" type="text" [formControlName]="i" placeholder="Teammate email">
+            </div>
+            <button id="add" type="button" (click)="addTeammate()">Add teammate</button>
         </div>
-        <button type="button" (click)="addTeammate()">Add another teammate</button>
-    </div>
-
-    <button type="submit" [disabled]="!teamForm.valid">Submit</button>    
-</form>
+        <button id="submit" type="submit" [disabled]="!teamForm.valid">Create team</button>
+    </form>
+</div>

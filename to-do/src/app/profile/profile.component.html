@@ -1,0 +1,26 @@
+<div>
+  <div class="photo-frame" id="photo-frame">
+    <img [src]="photoUrl" alt="Preview">
+  </div>
+  <input id="add-file" type="file" (change)="onFileSelected($event)" accept="image/*">
+</div>
+<div>
+  <img id="icon" src="https://static-00.iconduck.com/assets.00/microsoft-todo-icon-1024x810-wbyx7rbk.png">
+  <div class="info">
+    <h1>Your Profile</h1>
+    <br>
+    <label for="name">First name</label> <br>
+    <input [disabled]="isDisabled" type="text" id="name" name="name" placeholder="Name"><br>
+    <label for="name">Last name</label> <br>
+    <input [disabled]="isDisabled" type="text" id="surname" name="surname" placeholder="Surname"><br>
+    <label for="team">Team</label> <br>
+    <input [disabled]="isDisabled" type="text" id="team" name="team" placeholder="Team"><br>
+    <label for="email">email</label> <br>
+    <input [disabled]="isDisabled" type="email" id="email" name="email" placeholder="email"><br>
+    <label for="password">Password</label> <br>
+    <input [disabled]="isDisabled" type="password" id="password" name="name" placeholder="Password"><br>
+    <button class="change-info" (click)="toggleEdit()"><img id="edit-button" src="https://static.vecteezy.com/system/resources/thumbnails/019/552/595/small/sign-up-icon-signup-square-box-on-transparent-background-free-png.png">EDIT</button> &nbsp;&nbsp;
+    <button class="change-info" (click)="toggleEdit()"><img id="save-button" src="https://static-00.iconduck.com/assets.00/save-icon-512x512-552twxqx.png">SAVE CHANGES</button>
+
+  </div>
+</div>
