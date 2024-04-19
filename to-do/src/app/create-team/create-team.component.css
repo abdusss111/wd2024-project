@@ -21,9 +21,8 @@ h1 {
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-    overflow: hidden;
     width: 768px;
-    max-width: 100%;
+    max-width: 100%;    
     min-height: 530px;
 }
 
@@ -48,16 +47,11 @@ h1 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    border-radius: 30px;
+    border-bottom: none;
+    box-shadow: inset 0 10px -10px rgba(0, 0, 0, 0.35);
     padding: 0 60px;
     height: 100%;
-}
-
-.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    /* Сохраняем высоту родителя */
 }
 
 .container input {
@@ -106,6 +100,7 @@ input placeholder {
     display: flex;
     text-align: center;
     flex-direction: column;
+    min-height: auto;
     width: 100%;
 }
 
@@ -113,3 +108,4 @@ input placeholder {
     width: fit-content;
     margin: 10px auto;
 }
+

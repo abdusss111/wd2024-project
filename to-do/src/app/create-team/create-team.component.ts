@@ -29,8 +29,8 @@ export class CreateTeamComponent {
 
   // Add a new <input>
   addTeammate() {
-    this.teammates.push(this.formBuilder.control(''));
-
+    if(this.teammates.length >= 5) alert("You reach maximum of team members")
+    else this.teammates.push(this.formBuilder.control(''));
   }
 
   validateFields(){
