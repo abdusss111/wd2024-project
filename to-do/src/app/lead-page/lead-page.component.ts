@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models';
 import { LeadPageService } from './lead-page.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+  standalone: true,
+  imports: [FormsModule],
   selector: 'app-lead-page',
   templateUrl: './lead-page.component.html',
   styleUrls: ['./lead-page.component.css'],
