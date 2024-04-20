@@ -23,7 +23,25 @@
 }
 
 .create_task input {
+  display: inline-block;
+  padding: 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   margin-right: 16px;
+}
+
+.create_task button {
+  display: inline-block;
+  padding: 16px 24px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
 .folders_tasks {
@@ -32,23 +50,31 @@
   margin-bottom: 32px;
 }
 
+.folders_list,
+.tasks_list {
+  background-color: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+}
+
 .folders_list {
   margin-right: 32px;
   width: 20%;
-  background-color: lightgray;
-  padding: 16px;
 }
 
 .tasks_list {
   width: 80%;
-  padding: 16px;
-  background-color: lightgray;
 }
 
-ul {
+.folders_list ul,
+.tasks_list ul {
   margin-bottom: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px;
 }
 
-ul:hover {
-  cursor: pointer;
+.folders_list ul:hover,
+.tasks_list ul:hover {
+  background-color: lightslategray;
 }

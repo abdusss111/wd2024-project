@@ -39,12 +39,15 @@ export class PersonalTasksComponent implements OnInit {
   }
 
   async onCreateFolder(): Promise<void> {
-    console.log('Creating folder:', this.newFolder);
+    if (this.newFolder.trim() === '') return;
+
     await this.personalTasksService.createFolder(this.newFolder);
 
     await this.personalTasksService.getFolders().then((folders) => {
       this.folders = folders;
       this.selectedFolder = folders[0];
     });
+
+    this.newFolder = '';
   }
 }
