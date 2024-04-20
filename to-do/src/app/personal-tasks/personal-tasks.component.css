@@ -1,8 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
+}
+
+.persontal_tasks_body {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  height: 100vh;
+  background-color: white;
+}
+
+.create_task {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.create_task input {
+  margin-right: 16px;
+}
+
+.folders_tasks {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+}
+
+.folders_list {
+  margin-right: 32px;
+  width: 20%;
+  background-color: lightgray;
+  padding: 16px;
+}
+
+.tasks_list {
+  width: 80%;
+  padding: 16px;
+  background-color: lightgray;
+}
+
+ul {
+  margin-bottom: 16px;
+}
+
+ul:hover {
+  cursor: pointer;
 }
