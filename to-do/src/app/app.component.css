@@ -2,26 +2,41 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px; /* Adjust spacing as needed */
+  padding: 10px;
+  /* Adjust spacing as needed */
   background-color: white;
 }
 
 .nav-item {
   /*opacity: 50%;*/
-  text-align: center; /* Center the contents */
+  text-align: center;
+  /* Center the contents */
 
 }
 
 .nav-item p {
-  margin: 0; /* Remove default margin */
+  margin: 0;
+  /* Remove default margin */
 }
+
+.nav-item .notifications {
+  width: 40px;
+  margin-top: 10px;
+}
+
+.nav-item .create-team {
+  width: 45px;
+  margin-top: 5px;
+}
+
 
 .nav-item img {
   width: 50px;
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -33,8 +48,6 @@
   opacity: 100%;
 }
 
-.nav-item.active img{
+.nav-item.active img {
   width: 70px;
 }
-
-

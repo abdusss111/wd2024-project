@@ -1,11 +1,10 @@
-
 <div class="container">
   <h1>Create new tasks for yourself!</h1>
   <form (ngSubmit)="addTask(folder, deadline, title, taskText, file)">
     <label for="selectFolder" id="selectFolder-text" >Select folder:</label>
     <select id="selectFolder" name="selectFolder" class="select-folders" [(ngModel)]="folder">
       <option value="" disabled selected hidden>Choose folder</option>
-      <option *ngFor="let i of ['Paul', 'Stefan', 'Daemon', 'Sady', 'Lili']" >
+      <option *ngFor="let i of ['Paul', 'Stefan', 'Daemon', 'Sady', 'Lili']">
         {{i}}
       </option>
     </select>
@@ -24,4 +23,3 @@
     <button type="submit" id="add-task-button">Add Task</button>
   </form>
 </div>
-
