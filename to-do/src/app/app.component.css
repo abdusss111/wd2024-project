@@ -8,6 +8,7 @@
 }
 
 .nav-item {
+  /*opacity: 50%;*/
   text-align: center;
   /* Center the contents */
 
@@ -18,12 +19,12 @@
   /* Remove default margin */
 }
 
-.nav-item .notifications{
+.nav-item .notifications {
   width: 40px;
   margin-top: 10px;
 }
 
-.nav-item .create-team{
+.nav-item .create-team {
   width: 45px;
   margin-top: 5px;
 }
@@ -40,4 +41,13 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
+}
+
+.nav-item.active {
+  font-weight: bold;
+  opacity: 100%;
+}
+
+.nav-item.active img {
+  width: 70px;
 }

@@ -1,39 +1,40 @@
-import { Component } from '@angular/core';
-// import { TaskService } from '../task.service';
-import {FormsModule} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { User } from '../models';
+import { LeadPageService } from './lead-page.service';
+
 @Component({
   selector: 'app-lead-page',
   templateUrl: './lead-page.component.html',
-  standalone: true,
-  imports: [
-    FormsModule
-  ],
-  styleUrls: ['./lead-page.component.css']
+  styleUrls: ['./lead-page.component.css'],
 })
-export class LeadPageComponent {
+export class LeadPageComponent implements OnInit {
   selectedUser: string = '';
   deadline: Date | undefined;
   taskText: string = '';
-  addTask(){
 
+  usersByTeam: User[] = []; // Initialize as an empty array
+
+  constructor(private leadpageService: LeadPageService) {}
+
+  ngOnInit() {
+    this.getUsersByTeam();
   }
-  // constructor(private taskService: TaskService) {}
-  //
-  // addTeamTask(): void {
-  //   if (!this.selectedUser || !this.teamTaskText || !this.deadline) {
-  //     console.error('Please fill in all fields');
-  //     return;
-  //   }
-  //
-  //   this.taskService.addTask(this.selectedUser, this.teamTaskText, this.deadline).subscribe(response => {
-  //       console.log('Task added successfully:', response);
-  //       // Reset form fields after successful addition
-  //       this.selectedUser = '';
-  //       this.teamTaskText = '';
-  //       this.deadline = undefined;
-  //     }, error => {
-  //       console.error('Error adding task:', error);
-  //       // Handle error appropriately
-  //     });
-  // }
+
+  getUsersByTeam() {
+    const teamId = 1; // Replace 1 with the actual team id
+    this.leadpageService.getUserByTeam(teamId).subscribe(
+      (usersByTeam) => {
+        this.usersByTeam = usersByTeam;
+      },
+      (error) => {
+        console.error('Error fetching users by team:', error);
+        // Handle error (e.g., show error message to user)
+      }
+    );
+  }
+
+  addTeamTask(selectedUser: any, deadline: any, taskText: any) {
+    console.log('new team task added');
+    alert(`user:${selectedUser}, deadline:${deadline}, task:${taskText}`);
+  }
 }

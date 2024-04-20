@@ -12,8 +12,19 @@ import {FormsModule} from "@angular/forms";
 })
 export class AuthenticationComponent {
   containerActive: boolean = false;
+  name: string = '';
+  email: string = '';
+  password: string = '';
+
 
   toggleContainer(): void {
     this.containerActive = !this.containerActive;
+  }
+
+  signUp(){
+    console.log("reg attempt")
+  }
+  signIn(){
+    console.log("login attempt")
   }
 }
