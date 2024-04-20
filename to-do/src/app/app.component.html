@@ -15,7 +15,7 @@
       <p>Home</p>
     </div>
 
-    <div class="nav-item">
+    <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       <a [routerLink]="['/notifications']"><img src="https://cdn-icons-png.flaticon.com/512/3119/3119338.png" width="5%"
           class="notifications"></a>
       <p>Notifications</p>
@@ -51,7 +51,7 @@
       <p>Lead Page</p>
     </div>
 
-    <div class="nav-item">
+    <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       <a [routerLink]="['/create-team']"><img
           src="https://cdn0.iconfinder.com/data/icons/user-24x24-pixel/24/users_team_customer_group_profile_add_create_new-512.png"
           width="5%" class="create-team"></a>
