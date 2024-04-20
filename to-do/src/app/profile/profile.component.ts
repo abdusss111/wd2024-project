@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [
+    FormsModule
+  ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -12,8 +15,18 @@ export class ProfileComponent {
   isDisabled = true; // По умолчанию инпуты отключены
   inputValue = ''; // Значение инпутов
 
+  name: string = '';
+  surname: string = '';
+  team: string = '';
+  email: string = '';
+  password: string = '';
+
   toggleEdit() {
     this.isDisabled = !this.isDisabled; // Изменяем состояние disabled при нажатии кнопки
+  }
+  sentChanges(){
+    this.isDisabled = !this.isDisabled;
+    console.log("Changes sent")
   }
   onFileSelected(event: any): void {
     const file: File = event.target.files[0]; // Получаем выбранный файл
@@ -26,6 +39,5 @@ export class ProfileComponent {
       reader.readAsDataURL(file); // Читаем файл как URL-адрес данных
     }
   }
-
 
 }
