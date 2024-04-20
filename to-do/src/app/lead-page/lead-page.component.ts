@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from "../models";
-import { LeadPageService } from "./lead-page.service";
+import { User } from '../models';
+import { LeadPageService } from './lead-page.service';
 
 @Component({
   selector: 'app-lead-page',
   templateUrl: './lead-page.component.html',
-  styleUrls: ['./lead-page.component.css']
+  styleUrls: ['./lead-page.component.css'],
 })
 export class LeadPageComponent implements OnInit {
   selectedUser: string = '';
@@ -34,7 +34,7 @@ export class LeadPageComponent implements OnInit {
   }
 
   addTeamTask(selectedUser: any, deadline: any, taskText: any) {
-    console.log("new team task added");
+    console.log('new team task added');
     alert(`user:${selectedUser}, deadline:${deadline}, task:${taskText}`);
   }
 }
