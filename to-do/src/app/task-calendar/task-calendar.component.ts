@@ -18,11 +18,8 @@ export class MyCalendarModule {}
   templateUrl: './task-calendar.component.html',
   standalone: true,
   imports: [
-    CalendarMonthModule
   ],
   styleUrls: ['./task-calendar.component.css']
 })
 export class TaskCalendarComponent {
-  viewDate: Date = new Date(); // Устанавливаем текущую дату по умолчанию
-  events: CalendarEvent[] = []; // Массив событий пока пустой, вы можете заполнить его данными из базы данных или другого источника
 }

@@ -7,6 +7,7 @@
 }
 
 .nav-item {
+  /*opacity: 50%;*/
   text-align: center; /* Center the contents */
 
 }
@@ -26,4 +27,14 @@
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
 }
+
+.nav-item.active {
+  font-weight: bold;
+  opacity: 100%;
+}
+
+.nav-item.active img{
+  width: 70px;
+}
+
 

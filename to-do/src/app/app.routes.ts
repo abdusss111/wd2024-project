@@ -10,7 +10,7 @@ import {LeadPageComponent} from "./lead-page/lead-page.component";
 import {NotfoundComponent} from "./notfound/notfound.component";
 
 export const routes: Routes = [
-  // {path: '', redirectTo: 'auth', pathMatch: "full"},
+  {path: '', redirectTo: 'home', pathMatch: "full"},
   {path: 'auth', component: AuthenticationComponent, title: 'Welcome!'},
   {path: 'create-task', component: CreateTaskComponent, title: 'Your tasks'},
   {path: 'home', component: HomeComponent, title: 'Home'},
