@@ -6,7 +6,7 @@ from .models import Folder
 
 class FolderSerializerModel(serializers.ModelSerializer):
     name = serializers.CharField(max_length=50, required=True)
-    user = serializers.SlugRelatedField(slug_field='name', queryset=User.objects)
+    user = serializers.SlugRelatedField(slug_field='id', queryset=User.objects)
 
     class Meta:
         model = Folder

@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { PersonalTasksService } from './personal-tasks.service';
 import { FormsModule } from '@angular/forms';
+import { FolderService } from '../folder.service';
+import { Folder } from '../models';
 
 @Component({
   selector: 'app-personal-tasks',
@@ -12,53 +14,53 @@ import { FormsModule } from '@angular/forms';
 })
 export class PersonalTasksComponent implements OnInit {
   private personalTasksService: PersonalTasksService;
+  private folderService: FolderService;
 
-  constructor(personalTasksService: PersonalTasksService) {
+  constructor(
+    personalTasksService: PersonalTasksService,
+    folderService: FolderService
+  ) {
     this.personalTasksService = personalTasksService;
+    this.folderService = folderService;
   }
 
   ngOnInit(): void {
-    this.personalTasksService.getFolders().then((folders) => {
+    this.folderService.getFolders().then((folders) => {
       this.folders = folders;
-      this.selectedFolder = folders[0];
     });
 
-    this.personalTasksService.getTasks().then((tasks) => {
-      this.tasks = tasks;
-    });
+    // this.personalTasksService.getTasks().then((tasks) => {
+    //   this.tasks = tasks;
+    // });
   }
 
-  folders: string[] = [];
-  tasks: Map<string, string[]> = new Map();
+  folders: Folder[] = [];
+  // tasks: Map<Folder, string[]> = new Map();
 
-  selectedFolder: string = '';
+  selectedFolder: number = -1;
   newFolder: string = '';
   highlightedFolder: number = -1;
 
-  onSelectFolder(folder: string): void {
-    this.selectedFolder = folder;
+  onSelectFolder(index: number): void {
+    this.selectedFolder = index;
   }
 
   async onCreateFolder(): Promise<void> {
     if (this.newFolder.trim() === '') return;
 
-    await this.personalTasksService.createFolder(this.newFolder);
+    await this.folderService.createFolder(this.newFolder);
 
-    await this.personalTasksService.getFolders().then((folders) => {
-      this.folders = folders;
-      this.selectedFolder = folders[0];
-    });
+    this.folders = await this.folderService.getFolders();
+    this.selectedFolder = -1;
 
     this.newFolder = '';
   }
 
-  async onDeleteFolder(index: number): Promise<void> {
-    await this.personalTasksService.deleteFolder(index);
+  async onDeleteFolder(folderId: number): Promise<void> {
+    await this.folderService.deleteFolder(folderId);
 
-    await this.personalTasksService.getFolders().then((folders) => {
-      this.folders = folders;
-      this.selectedFolder = folders[0];
-    });
+    this.folders = await this.folderService.getFolders();
+    this.selectedFolder = -1;
   }
 
   showDeleteButton(index: number): void {
