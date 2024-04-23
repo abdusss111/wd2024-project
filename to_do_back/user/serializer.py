@@ -41,7 +41,7 @@ class UserSerializer(serializers.Serializer):
 
 class UserSerializerModel(serializers.ModelSerializer):
     username = serializers.CharField(max_length=50, required=False)
-    id = serializers.IntegerField(read_only=False)
+    id = serializers.IntegerField(read_only=False, required=False)
     name = serializers.CharField(max_length=50, required=False)
     lastname = serializers.CharField(max_length=50, required=False)
     password = serializers.CharField(max_length=20, required=False)

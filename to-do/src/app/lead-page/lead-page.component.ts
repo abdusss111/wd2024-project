@@ -8,8 +8,12 @@ import { TaskService } from '../task.service';
 
 @Component({
   standalone: true,
-  imports: [FormsModule, CommonModule],
   selector: 'app-lead-page',
+  imports: [
+    CommonModule,
+    FormsModule,
+    
+  ],
   templateUrl: './lead-page.component.html',
   styleUrls: ['./lead-page.component.css'],
 })

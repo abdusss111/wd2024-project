@@ -12,6 +12,10 @@ export class UserService {
   constructor(private client: HttpClient) {
   }
 
+  getUsers(): Observable<User[]>{
+    return this.client.get<User[]>(`${this.BASE_URL}/users/`)
+  }
+
   getUser(username:string): Observable<User>{
     return this.client.get<User>(`${this.BASE_URL}/user/${username}`)
   }
