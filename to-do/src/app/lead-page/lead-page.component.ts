@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models';
 import { LeadPageService } from './lead-page.service';
+import { FormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
+import {AuthenticationComponent} from "../authentication/authentication.component";
 
 @Component({
   selector: 'app-lead-page',
   templateUrl: './lead-page.component.html',
   styleUrls: ['./lead-page.component.css'],
+  imports: [
+    FormsModule,
+    CommonModule
+  ],
+  standalone: true
 })
 export class LeadPageComponent implements OnInit {
   selectedUser: string = '';
   deadline: Date | undefined;
   taskText: string = '';
-
   usersByTeam: User[] = []; // Initialize as an empty array
 
   constructor(private leadpageService: LeadPageService) {}
@@ -21,7 +28,7 @@ export class LeadPageComponent implements OnInit {
   }
 
   getUsersByTeam() {
-    const teamId = 1; // Replace 1 with the actual team id
+    const teamId = Number(localStorage.getItem("team_id"))+1; // Replace 1 with the actual team id
     this.leadpageService.getUserByTeam(teamId).subscribe(
       (usersByTeam) => {
         this.usersByTeam = usersByTeam;

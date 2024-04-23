@@ -4,8 +4,8 @@
     <label for="selectFolder" id="selectFolder-text" >Select folder:</label>
     <select id="selectFolder" name="selectFolder" class="select-folders" [(ngModel)]="folder">
       <option value="" disabled selected hidden>Choose folder</option>
-      <option *ngFor="let i of ['Paul', 'Stefan', 'Daemon', 'Sady', 'Lili']">
-        {{i}}
+      <option *ngFor="let i of folders">
+        {{i.name}}
       </option>
     </select>
     <br><br>

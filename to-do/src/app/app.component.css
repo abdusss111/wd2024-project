@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -10,7 +21,7 @@
 .nav-item {
   /*opacity: 50%;*/
   text-align: center;
-  /* Center the contents */
+
 
 }
 
@@ -34,13 +45,13 @@
   width: 50px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+.nav-item.active {
+  font-weight: bold;
+  opacity: 100%;
+}
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+.nav-item.active img {
+  width: 70px;
 }
 
 .nav-item.active {

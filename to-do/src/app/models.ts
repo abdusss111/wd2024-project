@@ -1,4 +1,5 @@
 export interface User {
+  username: string
   id: number
   name: string
   lastname: string
@@ -9,3 +10,14 @@ export interface User {
   team_id: number
 }
 
+export interface Folder {
+  id: number
+  name: string
+  user_id: number
+}
+
+
+export interface Token {
+  access: string;
+  refresh: string;
+}
