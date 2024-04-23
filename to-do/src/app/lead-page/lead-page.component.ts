@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models';
 import { LeadPageService } from './lead-page.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-lead-page',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    
+  ],
   templateUrl: './lead-page.component.html',
   styleUrls: ['./lead-page.component.css'],
 })

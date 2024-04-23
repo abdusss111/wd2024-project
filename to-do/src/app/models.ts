@@ -9,3 +9,7 @@ export interface User {
   team_id: number
 }
 
+export interface Team {
+  id?: number
+  name: string
+}
