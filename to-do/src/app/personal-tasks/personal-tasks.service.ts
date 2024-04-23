@@ -6,13 +6,7 @@ import { Injectable } from '@angular/core';
 export class PersonalTasksService {
   constructor() {}
 
-  private folders: string[] = [
-    'General',
-    'Work',
-    'Personal',
-    'Shopping',
-    'Others',
-  ];
+  private folders: string[] = ['General', 'Personal', 'Shopping', 'Others'];
 
   private tasks: Map<string, string[]> = new Map([
     ['General', ['Buy groceries', 'Clean the house', 'Pay bills']],
