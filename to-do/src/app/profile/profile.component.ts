@@ -13,7 +13,7 @@ import {Observable} from "rxjs";
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
-  photoUrl: string = '';
+  photoUrl: string = String(localStorage.getItem('photo'));
   isDisabled = true;
   inputValue = '';
   name: string = '';
@@ -25,13 +25,12 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.sendChanges();
+    // this.sendChanges();
   }
 
   username = localStorage.getItem("username")
   current_name = localStorage.getItem("name")
   current_lastname = localStorage.getItem("lastname")
-  current_password = localStorage.getItem("password")
   current_team = localStorage.getItem("team")
   current_email = localStorage.getItem("email")
   edit() {
@@ -44,7 +43,7 @@ export class ProfileComponent implements OnInit {
       const reader: FileReader = new FileReader();
       reader.onload = (e: any) => {
         this.photoUrl = e.target.result;
-        // localStorage.setItem("photo", e.target.result);
+        localStorage.setItem("photo", e.target.result);
       };
       reader.readAsDataURL(file);
     }
@@ -52,17 +51,24 @@ export class ProfileComponent implements OnInit {
 
 
   sendChanges(){
+
+    if (this.name == '' || this.surname == '' || this.team == '' || this.email == ''){
+      alert("Fill in all fields");
+    }
     this.isDisabled = true;
     const updatedUserData = {
+      id: localStorage.getItem("id"),
       username: localStorage.getItem("username"),
       name: this.name,
       lastname: this.surname,
       team: this.team,
       email: this.email,
+      photoUrl: this.photoUrl
 
     };
 
-    this.userService.editUser(String(this.username), updatedUserData)
+    this.userService
+      .editUser(String(this.username), updatedUserData)
       .subscribe((updatedUser: User) => {
         console.log('User data updated successfully:', updatedUser);
 
@@ -74,10 +80,10 @@ export class ProfileComponent implements OnInit {
       .subscribe((data: User) => {
         localStorage.setItem("name", data.name);
         localStorage.setItem("lastname", data.lastname);
-        localStorage.setItem("team", String(data.team_id));
+        localStorage.setItem("team", data.team);
         localStorage.setItem("email", data.email);
         localStorage.setItem("password", data.password);
-        localStorage.setItem("photo", data.photo);
+        localStorage.setItem("photo", data.photoUrl);
         localStorage.setItem("id", String(data.id));
         localStorage.setItem("isLeader", String(data.isLeader));
         localStorage.setItem("username", data.username)
@@ -89,4 +95,5 @@ export class ProfileComponent implements OnInit {
   }
 
 
+  protected readonly localStorage = localStorage;
 }

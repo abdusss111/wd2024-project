@@ -6,8 +6,8 @@ export interface User {
   password: string
   email: string
   isLeader: boolean
-  photo: string
-  team_id: number
+  photoUrl: string
+  team: string
 }
 
 export interface Team {
@@ -23,4 +23,13 @@ export interface Folder {
 export interface Token {
   access: string;
   refresh: string;
+}
+
+
+export interface Task {
+  title: string;
+  taskText: string;
+  deadline: Date;
+  folder: string;
+  user_id: number;
 }
