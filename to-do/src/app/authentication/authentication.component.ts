@@ -50,13 +50,13 @@ export class AuthenticationComponent implements OnInit  {
       .subscribe((data) => {
         localStorage.setItem("name", data.name);
         localStorage.setItem("lastname", data.lastname);
-        localStorage.setItem("team", String(data.team_id));
+        localStorage.setItem("team", data.team);
         localStorage.setItem("email", data.email);
         localStorage.setItem("password", data.password);
-        localStorage.setItem("photo", data.photo);
+        localStorage.setItem("photo", data.photoUrl);
         localStorage.setItem("id", String(data.id));
         localStorage.setItem("isLeader", String(data.isLeader));
-        localStorage.setItem("username", data.username)
+        localStorage.setItem("username", data.username);
 
 
       })

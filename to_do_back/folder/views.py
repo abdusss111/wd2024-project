@@ -1,7 +1,6 @@
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from .models import Folder
 from .serializer import FolderSerializerModel
 
@@ -12,7 +11,7 @@ class FolderListAPIView(APIView):
     serializer_class = FolderSerializerModel
 
     def get(self, request, user_id):
-        folders = Folder.objects.filter(user_id=user_id)
+        folders = Folder.objects.filter(id=user_id)
         serializer = FolderSerializerModel(folders, many=True)
         return Response(serializer.data)
 

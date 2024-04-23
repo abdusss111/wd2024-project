@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { CreateTaskService } from "./create-task.service";
+import { FolderService } from "./folder.service";
 import { Folder } from "../models";
+import {TaskService} from "../task.service";
 
 @Component({
   selector: 'app-create-task',
@@ -21,21 +22,46 @@ export class CreateTaskComponent implements OnInit {
   title: string = '';
   taskText: string = '';
   file: File | undefined;
-
-  constructor(private createTaskService: CreateTaskService) { }
+  userId = Number(localStorage.getItem("id"))
+  constructor(
+    private createTaskService: FolderService,
+    private taskService: TaskService
+    ) { }
 
   ngOnInit() {
     this.getFolders();
   }
 
   getFolders() {
-    const userId = Number(localStorage.getItem("id")) // Replace 1 with the actual user id
-    this.createTaskService.getFolderByUser(userId).subscribe((folders) => {
+    this.createTaskService.getFolderByUser(this.userId).subscribe((folders) => {
       this.folders = folders;
     });
   }
 
-  addTask(folder: any, deadline: any, title: any, taskText: any, file: any) {
-    alert(`${folder}, ${deadline}, ${title}, ${taskText}, ${file}`)
+  addTask() {
+    if (this.taskText == '' || this.folder == '' || this.title == ''){
+      alert("Fill in all fields");
+    }
+    else {
+      const NewTask = {
+        created_by: localStorage.getItem("name"),
+        folder: this.folder,
+        deadline: this.deadline,
+        title: this.title,
+        taskText: this.taskText
+      }
+
+      this.taskService
+        .addTask(this.userId, NewTask)
+        .subscribe((data) =>{
+          alert(`Task added, details: ${this.folder}, ${this.deadline}, ${this.title}, ${this.taskText},`)
+          this.folder = '';
+          this.deadline = undefined;
+          this.taskText = '';
+          this.title = '';
+
+        });
+    }
+
   }
 }

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {Folder, User} from "../models";
+import {Folder} from "../models";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class CreateTaskService {
+export class FolderService {
 
   BASE_URL: string = 'http://localhost:8000/api'
   constructor(private client: HttpClient) {

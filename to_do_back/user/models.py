@@ -125,7 +125,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True, blank=True
     )
     isLeader = models.BooleanField(_('Is Leader'), default=False)
-    photo = models.ImageField(_('Photo'), null=True, blank=True)
+    photoUrl = models.CharField(max_length=5555, null=True, blank=True)
     is_active = models.BooleanField(_('Is active'), default=True)
     is_staff = models.BooleanField(_('Is staff'), default=False)
     date_joined = models.DateTimeField(_('Date joined'), default=timezone.now)
