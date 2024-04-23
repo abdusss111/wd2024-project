@@ -59,3 +59,10 @@ def user_detail_by_username(request, username):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)  # Changed status
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(["GET"])
+def user_list(request):
+    if request.method == "GET":
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)

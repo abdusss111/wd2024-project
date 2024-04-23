@@ -1,4 +1,5 @@
 export interface User {
+  value(value: any): string
   username: string
   id: number
   name: string
@@ -10,12 +11,15 @@ export interface User {
   team: string
 }
 
+export interface Team {
+  id?: number
+  name: string
+}
 export interface Folder {
   id: number
   name: string
   user_id: number
 }
-
 
 export interface Token {
   access: string;

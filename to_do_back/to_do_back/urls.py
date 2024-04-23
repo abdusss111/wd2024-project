@@ -23,5 +23,7 @@ urlpatterns = [
     path('api/', include('folder.urls')),
     path('api/', include('task.urls')),
     # path('teams/', include('team.urls')),
+    # path('tasks/', include('task.urls')),
+    path('api/', include('team.urls')),
 
 ]
