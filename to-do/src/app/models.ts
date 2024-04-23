@@ -1,4 +1,5 @@
 export interface User {
+  value(value: any): string
   username: string
   id: number
   name: string

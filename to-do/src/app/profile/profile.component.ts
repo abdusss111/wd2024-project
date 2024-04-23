@@ -87,8 +87,6 @@ export class ProfileComponent implements OnInit {
         localStorage.setItem("id", String(data.id));
         localStorage.setItem("isLeader", String(data.isLeader));
         localStorage.setItem("username", data.username)
-
-
       })
 
 

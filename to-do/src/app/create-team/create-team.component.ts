@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TeamService } from './create-team.service';
-import { Team } from '../models';
+import { Team, User } from '../models';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-create-team',
@@ -19,19 +20,36 @@ export class CreateTeamComponent {
   teamForm = this.formBuilder.group({
     teamName: ['', Validators.required],
     teammates: this.formBuilder.array([
-      this.formBuilder.control('', [Validators.email])
+      this.formBuilder.control('')
     ])
   })
+
+  currentUser !: User;
+  users !: User[];
+  teamUsers : User[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private teamService: TeamService,
+    private userService: UserService
   ) { }
 
+  ngOnInit() {
+    this.userService.getUsers().subscribe(users => this.users = users)
+
+    const username = localStorage.getItem("username")
+    if (username != null) {
+      this.userService.getUser(username).subscribe(user => this.currentUser = user)
+    }
+  }
 
   // Return a teammates
   get teammates() {
     return this.teamForm.get('teammates') as FormArray;
+  }
+
+  checkIsInTeam() {
+
   }
 
   // Add a new <input>
@@ -41,6 +59,12 @@ export class CreateTeamComponent {
   }
 
   validateFields() {
+    if( this.currentUser.isLeader){
+      alert("You already a leader")
+      this.teamForm.reset()
+      return false;
+    }
+
     const teamName = this.teamForm.get("teamName")
     if (teamName?.invalid) {
       alert('Team name is required.');
@@ -51,43 +75,83 @@ export class CreateTeamComponent {
       return false;
     }
 
-    // Check if any teammate email is empty
     const teammatesArray = this.teamForm.get('teammates') as FormArray;
     for (let i = 0; i < teammatesArray.length; i++) {
       const teammateControl = teammatesArray.at(i);
       if (!teammateControl.value || teammateControl.value.trim() === '') {
-        alert('Teammate email is required.');
-        return false;
+          alert('Teammate username is required.');
+          return false;
       }
-    }
+      const user = this.users.find(user => user.username === teammateControl.value);
+      if (!user) {
+          alert('User does not exist.');
+          this.teamForm.reset()
+          return false;
+      }
 
-    // Check if any teammate email is invalid
-    for (let i = 0; i < teammatesArray.length; i++) {
-      const teammateControl = teammatesArray.at(i);
-      if (teammateControl.invalid) {
-        alert('Invalid email format for teammate.');
-        return false;
+      if (user.isLeader) {
+          alert('User is a leader. Select a regular teammate.');
+          this.teamForm.reset()
+          return false;
       }
-    }
-    return true;
+
+      if (user.team) {
+          alert('User is already assigned to a team.');
+          this.teamForm.reset()
+          return false;
+      }
+
+      this.teamUsers.push(user)
+  }
+  return true;
   }
 
-  // There will be a logic of using service with POST request
   onSubmit() {
+    console.log("Clicked")
     if (this.validateFields()) {
       const teamNameValue = this.teamForm.get('teamName')?.value ?? '';
 
       const newTeam: Team = {
         name: teamNameValue
       };
-      // Make a POST request to create the new team
+
+      let responseData: Team;
       this.teamService.createTeam(newTeam).subscribe(
         (response) => {
-          alert('Team created successfully!');
-          console.log(response); // Log the response from the server
-          this.teamForm.reset(); // Reset the form after successful submission
+          responseData = response;
+
+          const updatedUserData = {
+            team: responseData.name,
+          };
+
+          console.log(updatedUserData)
+          for (let i = 0; i < this.teamUsers.length; i++) {
+            const teammateControl = this.teamUsers.at(i);
+            
+            if( teammateControl != undefined){
+            this.userService
+              .editUser(String(teammateControl.username), updatedUserData)
+              .subscribe((updatedUser: User) => {
+                console.log('User data updated successfully:', updatedUser);
+
+              }, (error) => {
+                console.error('Error updating user data:', error);
+              });
+          }}
+          this.userService
+            .editUser(this.currentUser.username, { "isLeader": true })
+            .subscribe((updatedUser: User) => {
+              console.log('User data updated successfully:', updatedUser);
+
+            }, (error) => {
+              console.error('Error updating user data:', error);
+            })
         }
+        
       );
+
+      alert('Team created successfully!');
+      this.teamForm.reset();
     }
   }
 }
