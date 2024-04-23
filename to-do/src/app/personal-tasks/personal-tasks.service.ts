@@ -35,6 +35,13 @@ export class PersonalTasksService {
     });
   }
 
+  deleteFolder(index: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.folders.splice(index, 1);
+      resolve();
+    });
+  }
+
   getFolders(): Promise<string[]> {
     return Promise.resolve(this.folders);
   }

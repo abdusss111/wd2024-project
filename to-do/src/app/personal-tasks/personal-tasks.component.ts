@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { PersonalTasksService } from './personal-tasks.service';
 import { FormsModule } from '@angular/forms';
 
@@ -33,6 +33,7 @@ export class PersonalTasksComponent implements OnInit {
 
   selectedFolder: string = '';
   newFolder: string = '';
+  highlightedFolder: number = -1;
 
   onSelectFolder(folder: string): void {
     this.selectedFolder = folder;
@@ -49,5 +50,22 @@ export class PersonalTasksComponent implements OnInit {
     });
 
     this.newFolder = '';
+  }
+
+  async onDeleteFolder(index: number): Promise<void> {
+    await this.personalTasksService.deleteFolder(index);
+
+    await this.personalTasksService.getFolders().then((folders) => {
+      this.folders = folders;
+      this.selectedFolder = folders[0];
+    });
+  }
+
+  showDeleteButton(index: number): void {
+    this.highlightedFolder = index;
+  }
+
+  hideDeleteButton(index: number): void {
+    this.highlightedFolder = -1;
   }
 }
