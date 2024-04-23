@@ -1,0 +1,27 @@
+
+<div class="container">
+  <h1>Create new tasks for yourself!</h1>
+  <form>
+    <label for="selectFolder" id="selectFolder-text" >Select folder:</label>
+    <select id="selectFolder" name="selectFolder" class="select-folders">
+      <option value="" disabled selected hidden>Choose folder</option>
+      <option *ngFor="let i of ['Paul', 'Stefan', 'Daemon', 'Sady', 'Lili']" >
+        {{i}}
+      </option>
+    </select>
+    <br><br>
+    <label for="deadline">Set the deadline:</label>
+    <input type="date" id="deadline" name="deadline">
+    <br><br>
+    <label for="title">Set the title:</label>
+    <input type="text" id="title" name="deadline" placeholder="Title of your task...">
+    <br><br>
+    <label for="task">Enter task:</label>
+    <textarea id="task" name="task" rows="4" cols="50" placeholder="Type task here..."></textarea>
+    <br>
+    <label for="attachment">Attach files (optional)</label>
+    <input type="file" id="attachment" name="attachment" placeholder="Type task here...">
+    <button type="button" id="add-task-button">Add Task</button>
+  </form>
+</div>
+
