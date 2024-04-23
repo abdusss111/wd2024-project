@@ -1,25 +1,23 @@
-import { Component, NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {CalendarEvent, CalendarModule, CalendarMonthModule} from 'angular-calendar';
-import { CommonModule } from '@angular/common';
-
-@NgModule({
-  imports: [
-    CommonModule,
-    BrowserAnimationsModule,
-    CalendarModule
-  ],
-  exports: [CalendarModule]
-})
-export class MyCalendarModule {}
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
+import { scheduler } from 'dhtmlx-scheduler';
 
 @Component({
-  selector: 'app-task-calendar',
+  encapsulation: ViewEncapsulation.None,
+  selector: 'task-calendar',
+  styleUrls: ['./task-calendar.component.css'],
   templateUrl: './task-calendar.component.html',
-  standalone: true,
-  imports: [
-  ],
-  styleUrls: ['./task-calendar.component.css']
 })
-export class TaskCalendarComponent {
+export class TaskCalendarComponent implements OnInit {
+  @ViewChild('taskCalendarContainer', { static: true })
+  schedulerContainer!: ElementRef;
+
+  ngOnInit() {
+    scheduler.init(this.schedulerContainer.nativeElement, new Date(), 'month');
+  }
 }
