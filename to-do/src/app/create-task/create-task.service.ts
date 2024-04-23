@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { User } from "../models";
+import {Folder, User} from "../models";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-
 @Injectable({
   providedIn: 'root'
 })
-export class LeadPageService {
+export class CreateTaskService {
 
   BASE_URL: string = 'http://localhost:8000/api'
-
   constructor(private client: HttpClient) {
   }
-  getUserByTeam(id:number): Observable<User[]>{
-    return this.client.get<User[]>(`${this.BASE_URL}/users/team/${id}`)
+
+  getFolderByUser(user_id:number): Observable<Folder[]>{
+    return this.client.get<Folder[]>(`${this.BASE_URL}/folders/${user_id}`)
   }
+
 }

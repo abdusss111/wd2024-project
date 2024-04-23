@@ -73,6 +73,11 @@ h1 {
   box-sizing: border-box; /* чтобы полностью соответствовать размерам контейнера */
 }
 
+.container select{
+  font-size: 16px;
+  height: 40px;
+}
+
 #task{
   height: 200px;
 }

@@ -10,23 +10,17 @@
   <div class="info">
     <h1>Your Profile</h1>
     <br>
-<!--    -->
-    <form (ngSubmit)="sentChanges()">
-    <label for="name">First name <!--  {{user.name}}  --></label> <br>
-    <input [disabled]="isDisabled" type="text" id="name" name="name" placeholder="Name" [(ngModel)]="name"><br>
-    <label for="name">Last name <!--  {{user.lastname}}  --></label> <br>
-    <input [disabled]="isDisabled" type="text" id="surname" name="surname" placeholder="Surname" [(ngModel)]="surname"><br>
-    <label for="team">Team <!--  {{user.team}}  --></label> <br>
-    <input [disabled]="isDisabled" type="text" id="team" name="team" placeholder="Team" [(ngModel)]="team"><br>
-    <label for="email">email <!--  {{user.email}}  --></label> <br>
-    <input [disabled]="isDisabled" type="email" id="email" name="email" placeholder="email" [(ngModel)]="email"><br>
-    <label for="password">Password <!--  {{user.password}}  --></label> <br>
-    <input [disabled]="isDisabled" type="password" id="password" name="name" placeholder="Password" [(ngModel)]="password"><br>
-<!--    <button class="change-info" (click)="toggleEdit()"><img alt="img" id="edit-button" src="https://static.vecteezy.com/system/resources/thumbnails/019/552/595/small/sign-up-icon-signup-square-box-on-transparent-background-free-png.png">EDIT</button> &nbsp;&nbsp;-->
-    <br><br><button class="change-info" type="submit"><img alt="img" id="save-button" src="https://static-00.iconduck.com/assets.00/save-icon-512x512-552twxqx.png">SAVE CHANGES</button>
+    <form (ngSubmit)="sendChanges()">
+      <label for="name">First name</label> <br>
+      <input [disabled]="isDisabled" type="text" id="name" name="name"  [placeholder]="current_name" [(ngModel)]="name"><br>
+      <label for="name">Last name</label> <br>
+      <input [disabled]="isDisabled" type="text" id="surname" name="surname" [placeholder]="current_lastname" [(ngModel)]="surname"><br>
+      <label for="team">Team</label> <br>
+      <input [disabled]="isDisabled" type="text" id="team" name="team" [placeholder]="current_team" [(ngModel)]="team"><br>
+      <label for="email">email</label> <br>
+      <input [disabled]="isDisabled" type="email" id="email" name="email" [placeholder]="current_email" [(ngModel)]="email"><br>
+    <br><br><button class="change-info" type="submit"><img alt="img" id="save-button" src="https://static-00.iconduck.com/assets.00/save-icon-512x512-552twxqx.png"><span id="save-text">SAVE CHANGES</span></button>
     </form>
-    <button class="change-info" (click)="toggleEdit()"><img alt="img" id="edit-button" src="https://static.vecteezy.com/system/resources/thumbnails/019/552/595/small/sign-up-icon-signup-square-box-on-transparent-background-free-png.png">EDIT</button> &nbsp;&nbsp;
-
-
+    <button class="change-info" (click)="edit()"><img alt="img" id="edit-button" src="https://static.vecteezy.com/system/resources/thumbnails/019/552/595/small/sign-up-icon-signup-square-box-on-transparent-background-free-png.png"><span id="edit-text">EDIT</span></button> &nbsp;&nbsp;
   </div>
 </div>

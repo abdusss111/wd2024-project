@@ -17,7 +17,9 @@ class Task(models.Model):
     created_by = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='tasks'
+        related_name='tasks',
+        null=True,
+        blank=True
     )
     team = models.ForeignKey(
         Team,

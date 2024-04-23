@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-oeb+^_)a$h%qn31wp!$s#2h6=$$$5&sy6-y488t&j-3@+kkr-r
 DEBUG = True
 
 ALLOWED_HOSTS = [
+
 ]
 
 
@@ -40,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-
+    'rest_framework_simplejwt',
     'corsheaders',
 
     'user',
@@ -62,6 +63,14 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+AUTH_USER_MODEL = 'user.User'
 
 
 ROOT_URLCONF = 'to_do_back.urls'
