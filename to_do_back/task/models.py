@@ -9,7 +9,8 @@ class Task(models.Model):
         Folder,
         on_delete=models.CASCADE,
         related_name='tasks',
-        default='All'
+        blank=True,
+        null=True
     )
     deadline = models.DateField()
     title = models.CharField(max_length=255, blank=True, null=True)
@@ -17,7 +18,9 @@ class Task(models.Model):
     created_by = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='tasks'
+        related_name='tasks',
+        null=True,
+        blank=True
     )
     team = models.ForeignKey(
         Team,
@@ -26,7 +29,7 @@ class Task(models.Model):
         null=True,
         blank=True
     )
-
+    # file = models.FileField(upload_to='uploads/')
     def __str__(self):
         return (
             self.title

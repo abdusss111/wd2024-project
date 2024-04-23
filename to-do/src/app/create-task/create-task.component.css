@@ -27,8 +27,6 @@ h1 {
   min-height: 530px;
 }
 
-
-
 .container button{
   background-color: #000000;
   color: #fff;
@@ -72,6 +70,11 @@ h1 {
   outline: none;
   width: 100%; /* чтобы занимать всю доступную ширину */
   box-sizing: border-box; /* чтобы полностью соответствовать размерам контейнера */
+}
+
+.container select{
+  font-size: 16px;
+  height: 40px;
 }
 
 #task{

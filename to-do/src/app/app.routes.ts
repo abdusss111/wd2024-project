@@ -8,16 +8,33 @@ import { TeamTasksComponent } from './team-tasks/team-tasks.component';
 import { LeadPageComponent } from './lead-page/lead-page.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { TaskCalendarComponent } from './task-calendar/task-calendar.component';
+import { CreateTeamComponent } from './create-team/create-team.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: "full"},
-  {path: 'auth', component: AuthenticationComponent, title: 'Welcome!'},
-  {path: 'create-task', component: CreateTaskComponent, title: 'Your tasks'},
-  {path: 'home', component: HomeComponent, title: 'Home'},
-  {path: 'personal-tasks', component: PersonalTasksComponent, title: 'Personal tasks'},
-  {path: 'profile', component: ProfileComponent, title: 'Profile'},
-  {path: 'task-calendar', component: TaskCalendarComponent, title: 'Task-calendar'},
-  {path: 'team-tasks', component: TeamTasksComponent, title: 'Team Tasks'},
-  {path: 'lead-page', component: LeadPageComponent, title: 'Lead Page'},
-  {path: '**', component: NotfoundComponent, title: '404'},
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: 'auth', component: AuthenticationComponent, title: 'Welcome!' },
+  { path: 'create-task', component: CreateTaskComponent, title: 'Your tasks' },
+  { path: 'home', component: HomeComponent, title: 'Home' },
+  {
+    path: 'personal-tasks',
+    component: PersonalTasksComponent,
+    title: 'Personal tasks',
+  },
+  { path: 'profile', component: ProfileComponent, title: 'Profile' },
+  {
+    path: 'task-calendar',
+    component: TaskCalendarComponent,
+    title: 'Task-calendar',
+  },
+  { path: 'team-tasks', component: TeamTasksComponent, title: 'Team Tasks' },
+  { path: 'lead-page', component: LeadPageComponent, title: 'Lead Page' },
+
+  { path: 'create-team', component: CreateTeamComponent, title: 'Create Team' },
+  {
+    path: 'notifications',
+    component: NotificationsComponent,
+    title: 'Notifications',
+  },
+  { path: '**', component: NotfoundComponent, title: '404' },
 ];

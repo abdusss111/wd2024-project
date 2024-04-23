@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 })
 export class LeadPageService {
 
-  BASE_URL: string = 'http://localhost:8000'
+  BASE_URL: string = 'http://localhost:8000/api'
 
   constructor(private client: HttpClient) {
   }

@@ -13,7 +13,7 @@ h1 {
 }
 
 .container{
-  top: 430px;
+  top: 510px;
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
@@ -71,6 +71,11 @@ h1 {
   outline: none;
   width: 100%; /* чтобы занимать всю доступную ширину */
   box-sizing: border-box; /* чтобы полностью соответствовать размерам контейнера */
+}
+
+.container select{
+  font-size: 16px;
+  height: 40px;
 }
 
 #task{
