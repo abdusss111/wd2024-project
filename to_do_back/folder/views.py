@@ -11,7 +11,7 @@ class FolderListAPIView(APIView):
     serializer_class = FolderSerializerModel
 
     def get(self, request, user_id):
-        folders = Folder.objects.filter(id=user_id)
+        folders = Folder.objects.filter(user_id=user_id)
         serializer = FolderSerializerModel(folders, many=True)
         return Response(serializer.data)
 

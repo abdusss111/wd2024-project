@@ -44,7 +44,7 @@ export class CreateTaskComponent implements OnInit {
     }
     else {
       const NewTask = {
-        created_by: localStorage.getItem("name"),
+        created_by: localStorage.getItem("username"),
         folder: this.folder,
         deadline: this.deadline,
         title: this.title,
