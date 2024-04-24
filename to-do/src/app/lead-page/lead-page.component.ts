@@ -24,6 +24,7 @@ export class LeadPageComponent implements OnInit {
   deadline: Date | undefined;
   taskText: string = '';
   usersByTeam: User[] = []; // Initialize as an empty array
+  teamId: number = Number(localStorage.getItem("team_id"));
   constructor(
     private leadPageService: LeadPageService,
     private taskService: TaskService,
@@ -35,8 +36,11 @@ export class LeadPageComponent implements OnInit {
   }
 
   getUsersByTeam() {
-    const teamId = Number(localStorage.getItem('team_id')) + 1;
-    this.leadPageService.getUserByTeam(teamId).subscribe(
+    this.userService.getUser(String(localStorage.getItem("username"))).subscribe((data: User) => {
+      this.teamId = data.team_id
+    });
+
+    this.leadPageService.getUserByTeam(this.teamId).subscribe(
       (usersByTeam) => {
         this.usersByTeam = usersByTeam;
       },

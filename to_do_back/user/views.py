@@ -2,7 +2,13 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import User
-from .serializer import UserSerializer, UserSerializerModel, MyTokenObtainPairSerializer
+from .serializer import (
+    UserSerializer,
+    UserSerializerModel,
+    MyTokenObtainPairSerializer,
+    UserSerializer2,
+    UserSerializerModel2
+)
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
@@ -37,10 +43,10 @@ class MyTokenObtainPairView(TokenObtainPairView):
 def user_list_by_team(request, team_id):
     if request.method == "GET":
         users_by_team = User.objects.filter(team_id=team_id)
-        serializer = UserSerializer(users_by_team, many=True)
+        serializer = UserSerializer2(users_by_team, many=True)
         return Response(serializer.data)
     elif request.method == "POST":
-        serializer = UserSerializer(data=request.data)
+        serializer = UserSerializer2(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)  # Changed status
@@ -51,10 +57,10 @@ def user_list_by_team(request, team_id):
 def user_detail_by_username(request, username):
     if request.method == "GET":
         user = User.objects.get(username=username)
-        serializer = UserSerializerModel(user)
+        serializer = UserSerializerModel2(user)
         return Response(serializer.data)
     elif request.method == "POST":
-        serializer = UserSerializerModel(data=request.data)
+        serializer = UserSerializerModel2(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)  # Changed status

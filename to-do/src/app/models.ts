@@ -1,5 +1,4 @@
 export interface User {
-  value(value: any): string
   username: string
   id: number
   name: string
@@ -9,6 +8,7 @@ export interface User {
   isLeader: boolean
   photoUrl: string
   team: string
+  team_id: number
 }
 
 export interface Team {
