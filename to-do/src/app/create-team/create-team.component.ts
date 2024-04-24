@@ -130,7 +130,7 @@ export class CreateTeamComponent {
             
             if( teammateControl != undefined){
             this.userService
-              .editUser(String(teammateControl.username), updatedUserData)
+              .editUser2(String(teammateControl.username), updatedUserData)
               .subscribe((updatedUser: User) => {
                 console.log('User data updated successfully:', updatedUser);
 
@@ -139,7 +139,7 @@ export class CreateTeamComponent {
               });
           }}
           this.userService
-            .editUser(this.currentUser.username, { "isLeader": true , "team" : responseData.name})
+            .editUser2(this.currentUser.username, { "isLeader": true , "team" : responseData.name})
             .subscribe((updatedUser: User) => {
               console.log('User data updated successfully:', updatedUser);
 
