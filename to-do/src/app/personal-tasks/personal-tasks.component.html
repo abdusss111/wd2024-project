@@ -1,1 +1,26 @@
-<p>personal-tasks works!</p>
+<div class="persontal_tasks_body">
+  <div class="create_task">
+    <input type="text" [(ngModel)]="newFolder" />
+    <button (click)="onCreateFolder()">Create Folder</button>
+  </div>
+  <div class="folders_tasks">
+    <div class="folders_list">
+      <ul
+        *ngFor="let folder of folders; let i = index"
+        (click)="onSelectFolder(i)"
+        (mouseenter)="showDeleteButton(i)"
+        (mouseleave)="hideDeleteButton(i)"
+      >
+        {{
+          folder.name
+        }}
+        <button
+          *ngIf="highlightedFolder === i"
+          (click)="onDeleteFolder(folder.id)"
+        >
+          Remove
+        </button>
+      </ul>
+    </div>
+  </div>
+</div>

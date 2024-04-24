@@ -14,7 +14,7 @@ h1 {
 }
 
 .container {
-    top: 390px;
+    top: 450px;
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
@@ -23,7 +23,7 @@ h1 {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     width: 768px;
     max-width: 100%;    
-    min-height: 530px;
+    min-height: 580px;
 }
 
 .container button {

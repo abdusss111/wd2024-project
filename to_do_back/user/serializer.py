@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from team.models import Team
 from .models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -12,15 +11,15 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
 class UserSerializer(serializers.Serializer):
-    username = serializers.CharField(max_length=50, required=True)
-    id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(max_length=50, required=True)
-    lastname = serializers.CharField(max_length=50, required=True)
+    username = serializers.CharField(max_length=50, required=False)
+    id = serializers.IntegerField(read_only=False)
+    name = serializers.CharField(max_length=50, required=False)
+    lastname = serializers.CharField(max_length=50, required=False)
     password = serializers.CharField(max_length=20, required=False)
-    email = serializers.EmailField(required=True)
+    email = serializers.EmailField(required=False)
     isLeader = serializers.BooleanField(required=False)
-    # photo = serializers.ImageField()
-    team = serializers.PrimaryKeyRelatedField(queryset=Team.objects.all(), required=False)
+    photo = serializers.CharField(max_length=555, required=False)
+    team = serializers.SlugRelatedField(slug_field='name', queryset=Team.objects, required=False)
 
 
     def create(self, validated_data):
@@ -41,15 +40,17 @@ class UserSerializer(serializers.Serializer):
 
 
 class UserSerializerModel(serializers.ModelSerializer):
-    username = serializers.CharField(max_length=50, required=True)
-    name = serializers.CharField(max_length=50, required=True)
-    lastname = serializers.CharField(max_length=50, required=True)
-    password = serializers.CharField(max_length=20, required=True)
-    email = serializers.EmailField()
-    isLeader = serializers.BooleanField()
-    # photo = serializers.ImageField()
-    team_id = serializers.IntegerField()
+    username = serializers.CharField(max_length=50, required=False)
+    id = serializers.IntegerField(read_only=False, required=False)
+    name = serializers.CharField(max_length=50, required=False)
+    lastname = serializers.CharField(max_length=50, required=False)
+    password = serializers.CharField(max_length=20, required=False)
+    email = serializers.EmailField(required=False)
+    isLeader = serializers.BooleanField(required=False)
+    photo = serializers.CharField(max_length=5555, required=False)
+    team = serializers.SlugRelatedField(slug_field='name', queryset=Team.objects, required=False)
 
     class Meta:
         model = User
-        fields = ("username", "name", "lastname", "email" )
+        fields = ("__all__")
+

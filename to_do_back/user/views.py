@@ -17,12 +17,12 @@ class UserDetailView(APIView):
 
     def get(self, request, username):
         user = get_object_or_404(User, username=username)
-        serializer = UserSerializer(user)
+        serializer = UserSerializerModel(user)
         return Response(serializer.data)
 
     def put(self, request, username):
         user = get_object_or_404(User, username=username)
-        serializer = UserSerializer(user, data=request.data)
+        serializer = UserSerializerModel(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -59,3 +59,10 @@ def user_detail_by_username(request, username):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)  # Changed status
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(["GET"])
+def user_list(request):
+    if request.method == "GET":
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
