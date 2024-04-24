@@ -25,5 +25,6 @@ urlpatterns = [
     # path('teams/', include('team.urls')),
     # path('tasks/', include('task.urls')),
     path('api/', include('team.urls')),
+    path('api/', include('notification.urls')),
 
 ]

@@ -139,7 +139,7 @@ export class CreateTeamComponent {
               });
           }}
           this.userService
-            .editUser(this.currentUser.username, { "isLeader": true })
+            .editUser(this.currentUser.username, { "isLeader": true , "team" : responseData.name})
             .subscribe((updatedUser: User) => {
               console.log('User data updated successfully:', updatedUser);
 
