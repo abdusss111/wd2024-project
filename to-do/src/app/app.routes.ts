@@ -9,9 +9,10 @@ import { TeamTasksComponent } from "./team-tasks/team-tasks.component";
 import {LeadPageComponent} from "./lead-page/lead-page.component";
 import {NotfoundComponent} from "./notfound/notfound.component";
 import { CreateTeamComponent } from './create-team/create-team.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 export const routes: Routes = [
-  // {path: '', redirectTo: 'auth', pathMatch: "full"},
+  {path: '', redirectTo: 'auth', pathMatch: "full"},
   {path: 'auth', component: AuthenticationComponent, title: 'Welcome!'},
   {path: 'create-task', component: CreateTaskComponent, title: 'Your tasks'},
   {path: 'home', component: HomeComponent, title: 'Home'},
@@ -20,7 +21,9 @@ export const routes: Routes = [
   {path: 'task-calendar', component: TaskCalendarComponent, title: 'Task-calendar'},
   {path: 'team-tasks', component: TeamTasksComponent, title: 'Team Tasks'},
   {path: 'lead-page', component: LeadPageComponent, title: 'Lead Page'},
+
   {path: 'create-team', component: CreateTeamComponent, title: 'Create Team'},
+  {path: 'notifications', component: NotificationsComponent, title: 'Notifications'},
   {path: '**', component: NotfoundComponent, title: '404'},
 ];
 

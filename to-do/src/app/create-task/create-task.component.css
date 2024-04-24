@@ -27,8 +27,6 @@ h1 {
   min-height: 530px;
 }
 
-
-
 .container button{
   background-color: #000000;
   color: #fff;
@@ -74,6 +72,11 @@ h1 {
   box-sizing: border-box; /* чтобы полностью соответствовать размерам контейнера */
 }
 
+.container select{
+  font-size: 16px;
+  height: 40px;
+}
+
 #task{
   height: 200px;
 }
@@ -91,10 +94,6 @@ h1 {
   border: solid black 1px;
 }
 
-#attachment input placeholder{
-  margin: 10px;
-}
-
 @keyframes move{
   0%, 49.99%{
     opacity: 0;
@@ -106,3 +105,17 @@ h1 {
   }
 }
 
+#attachment {
+  width: 100%;
+  background-color: #f3f2f2;
+  color: black;
+  text-align: center;
+  font-size: 10px;
+  padding: 10px 30px;
+  margin-top: 10px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
