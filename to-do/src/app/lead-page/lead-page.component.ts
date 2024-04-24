@@ -12,13 +12,12 @@ import { TaskService } from '../task.service';
   imports: [
     CommonModule,
     FormsModule,
-    
+
   ],
   templateUrl: './lead-page.component.html',
   styleUrls: ['./lead-page.component.css'],
 })
 export class LeadPageComponent implements OnInit {
-  currName: string = '';
   currId: number | undefined;
   title: string = '';
   selectedUser: string = '';
@@ -36,7 +35,7 @@ export class LeadPageComponent implements OnInit {
   }
 
   getUsersByTeam() {
-    const teamId = Number(localStorage.getItem('team_id')) + 1; // Replace 1 with the actual team id
+    const teamId = Number(localStorage.getItem('team_id')) + 1;
     this.leadPageService.getUserByTeam(teamId).subscribe(
       (usersByTeam) => {
         this.usersByTeam = usersByTeam;
@@ -57,11 +56,10 @@ export class LeadPageComponent implements OnInit {
       alert('Fill in all fields');
     } else {
       this.userService.getUser(this.selectedUser).subscribe((data: User) => {
-        localStorage.setItem('currId', String(data.id)),
-          (this.currName = data.name);
+        localStorage.setItem('currId', String(data.id))
       });
       const NewTask = {
-        created_by: localStorage.getItem('name'),
+        created_by: localStorage.getItem('username'),
         deadline: this.deadline,
         title: this.title,
         taskText: this.taskText,
