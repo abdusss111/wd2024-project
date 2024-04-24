@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from "./authentication.service";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-// import { AuthDataService } from "../auth-data.service";
-import { User } from "../models";
 import { UserService } from "../user.service";
 
 @Component({
@@ -24,7 +22,6 @@ export class AuthenticationComponent implements OnInit  {
 
   constructor(
     private authenticationService: AuthenticationService,
-    // private authDataService: AuthDataService,
     private userService: UserService
     ) {
   }
@@ -48,21 +45,11 @@ export class AuthenticationComponent implements OnInit  {
     this.userService
       .getUser(this.username)
       .subscribe((data) => {
-        localStorage.setItem("name", data.name);
-        localStorage.setItem("lastname", data.lastname);
-        localStorage.setItem("team", data.team);
-        localStorage.setItem("email", data.email);
-        localStorage.setItem("password", data.password);
-        localStorage.setItem("photo", data.photoUrl);
         localStorage.setItem("id", String(data.id));
-        localStorage.setItem("isLeader", String(data.isLeader));
         localStorage.setItem("username", data.username);
-
-
       })
 
     console.log( `${this.username} ${this.password}` )
-    // this.username = ''
     this.password = ''
   }
 
@@ -71,16 +58,8 @@ export class AuthenticationComponent implements OnInit  {
     localStorage.setItem("logged", '');
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
-    localStorage.removeItem("name");
-    localStorage.removeItem("lastname");
-    localStorage.removeItem("team");
-    localStorage.removeItem("email");
-    localStorage.removeItem("password");
-    localStorage.removeItem("photo");
     localStorage.removeItem("id");
     localStorage.removeItem("username");
-    localStorage.removeItem("isLeader");
-
   }
 
   signUp(){
