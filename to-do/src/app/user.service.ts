@@ -20,6 +20,10 @@ export class UserService {
     return this.client.get<User>(`${this.BASE_URL}/user/${username}`)
   }
 
+  getUser2(username:string): Observable<User>{
+    return this.client.get<User>(`${this.BASE_URL}/users/${username}`)
+  }
+
   editUser(username:string, userData: any): Observable<User>{
     return this.client.put<User>(`${this.BASE_URL}/user/${username}`, userData)
   }

@@ -14,6 +14,5 @@ urlpatterns = [
     path('user/<str:username>',user_detail_by_username),
     path('users/', user_list),
     path('users/<int:user_id>/', views.user_detail_by_id, name='user_detail_by_id'),
-
 ]
 

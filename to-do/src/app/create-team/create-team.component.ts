@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TeamService } from './create-team.service';
-import { Team, User } from '../models';
+import { Team, User, Notification } from '../models';
 import { UserService } from '../user.service';
-
+import { NotificationService } from '../notifications/notifications.service';
 @Component({
   selector: 'app-create-team',
   standalone: true,
@@ -26,12 +26,13 @@ export class CreateTeamComponent {
 
   currentUser !: User;
   users !: User[];
-  teamUsers : User[] = [];
+  teamUsers: User[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private teamService: TeamService,
-    private userService: UserService
+    private userService: UserService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit() {
@@ -59,7 +60,7 @@ export class CreateTeamComponent {
   }
 
   validateFields() {
-    if( this.currentUser.isLeader){
+    if (this.currentUser.isLeader) {
       alert("You already a leader")
       this.teamForm.reset()
       return false;
@@ -79,31 +80,31 @@ export class CreateTeamComponent {
     for (let i = 0; i < teammatesArray.length; i++) {
       const teammateControl = teammatesArray.at(i);
       if (!teammateControl.value || teammateControl.value.trim() === '') {
-          alert('Teammate username is required.');
-          return false;
+        alert('Teammate username is required.');
+        return false;
       }
       const user = this.users.find(user => user.username === teammateControl.value);
       if (!user) {
-          alert('User does not exist.');
-          this.teamForm.reset()
-          return false;
+        alert('User does not exist.');
+        this.teamForm.reset()
+        return false;
       }
 
       if (user.isLeader) {
-          alert('User is a leader. Select a regular teammate.');
-          this.teamForm.reset()
-          return false;
+        alert('User is a leader. Select a other teammate.');
+        this.teamForm.reset()
+        return false;
       }
 
       if (user.team) {
-          alert('User is already assigned to a team.');
-          this.teamForm.reset()
-          return false;
+        alert('User is already assigned to a team.');
+        this.teamForm.reset()
+        return false;
       }
 
       this.teamUsers.push(user)
-  }
-  return true;
+    }
+    return true;
   }
 
   onSubmit() {
@@ -127,19 +128,31 @@ export class CreateTeamComponent {
           console.log(updatedUserData)
           for (let i = 0; i < this.teamUsers.length; i++) {
             const teammateControl = this.teamUsers.at(i);
-            
-            if( teammateControl != undefined){
-            this.userService
-              .editUser2(String(teammateControl.username), updatedUserData)
-              .subscribe((updatedUser: User) => {
-                console.log('User data updated successfully:', updatedUser);
 
-              }, (error) => {
-                console.error('Error updating user data:', error);
-              });
-          }}
+            if (teammateControl != undefined) {
+              const notification: Notification = {
+                message: 'You have been added to the team',
+                user: teammateControl.id
+              };
+
+              this.userService
+                .editUser2(String(teammateControl.username), updatedUserData)
+                .subscribe((updatedUser: User) => {
+                  console.log('User data updated successfully:', updatedUser);
+
+                }, (error) => {
+                  console.error('Error updating user data:', error);
+                });
+              
+              this.notificationService.createNotification(notification).subscribe(
+                (response) =>{
+                  console.log(response)
+                }
+              )
+            }
+          }
           this.userService
-            .editUser2(this.currentUser.username, { "isLeader": true , "team" : responseData.name})
+            .editUser2(this.currentUser.username, { "isLeader": true, "team": responseData.name })
             .subscribe((updatedUser: User) => {
               localStorage.setItem('team_id', String(responseData.id))
               console.log('User data updated successfully:', updatedUser);
@@ -148,7 +161,7 @@ export class CreateTeamComponent {
               console.error('Error updating user data:', error);
             })
         }
-        
+
       );
 
       alert('Team created successfully!');
