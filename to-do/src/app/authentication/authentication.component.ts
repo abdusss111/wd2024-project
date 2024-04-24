@@ -40,13 +40,14 @@ export class AuthenticationComponent implements OnInit  {
       .subscribe((data) => {
         localStorage.setItem("access", data.access);
         localStorage.setItem("refresh", data.refresh);
-        localStorage.setItem("logged", 'zzz')
+        localStorage.setItem("logged", 'zzz');
       })
     this.userService
       .getUser(this.username)
       .subscribe((data) => {
         localStorage.setItem("id", String(data.id));
         localStorage.setItem("username", data.username);
+        localStorage.setItem("team_id", data.team)
       })
 
     console.log( `${this.username} ${this.password}` )
@@ -60,6 +61,9 @@ export class AuthenticationComponent implements OnInit  {
     localStorage.removeItem("refresh");
     localStorage.removeItem("id");
     localStorage.removeItem("username");
+    localStorage.removeItem("currId");
+    localStorage.removeItem("team_id");
+
   }
 
   signUp(){

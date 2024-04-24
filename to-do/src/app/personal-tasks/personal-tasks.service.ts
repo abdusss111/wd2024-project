@@ -1,26 +1,16 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PersonalTasksService {
-  constructor() {}
+  private baseUrl = 'http://localhost:8000/api'; // Base URL for API
 
-  private folders: string[] = ['General', 'Personal', 'Shopping', 'Others'];
+  constructor(private http: HttpClient) {}
 
-  private tasks: Map<string, string[]> = new Map([
-    ['General', ['Buy groceries', 'Clean the house', 'Pay bills']],
-    [
-      'Work',
-      ['Finish the report', 'Send the email', 'Prepare the presentation'],
-    ],
-    ['Personal', ['Call mom', 'Go to the gym', 'Read a book']],
-    [
-      'Shopping',
-      ['Buy a new phone', 'Get a new laptop', 'Purchase a new camera'],
-    ],
-    ['Others', ['Go to the doctor', 'Visit the dentist', 'Meet with friends']],
-  ]);
+  private folders: string[] = [];
 
   createFolder(folder: string): Promise<void> {
     return new Promise((resolve, reject) => {
@@ -36,11 +26,16 @@ export class PersonalTasksService {
     });
   }
 
-  getFolders(): Promise<string[]> {
-    return Promise.resolve(this.folders);
+  getFolders(userId: number): Observable<string[]> {
+    const url = `${this.baseUrl}/folders/${userId}`;
+    return this.http.get<string[]>(url);
   }
 
-  getTasks(): Promise<Map<string, string[]>> {
-    return Promise.resolve(this.tasks);
+  // getTasks(): Promise<Map<string, string[]>> {
+  //   return Promise.resolve(this.tasks);
+  // }
+  getTasks(userId: number): Observable<Map<string, string[]>> {
+    const url = `${this.baseUrl}/user/${userId}/tasks`;
+    return this.http.get<Map<string, string[]>>(url);
   }
 }
