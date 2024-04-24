@@ -7,23 +7,19 @@
     <div class="folders_list">
       <ul
         *ngFor="let folder of folders; let i = index"
-        (click)="onSelectFolder(folder)"
+        (click)="onSelectFolder(i)"
         (mouseenter)="showDeleteButton(i)"
         (mouseleave)="hideDeleteButton(i)"
       >
         {{
-          folder
+          folder.name
         }}
-        <button *ngIf="highlightedFolder === i" (click)="onDeleteFolder(i)">
+        <button
+          *ngIf="highlightedFolder === i"
+          (click)="onDeleteFolder(folder.id)"
+        >
           Remove
         </button>
-      </ul>
-    </div>
-    <div class="tasks_list">
-      <ul *ngFor="let task of tasks.get(selectedFolder)">
-        {{
-          task
-        }}
       </ul>
     </div>
   </div>
