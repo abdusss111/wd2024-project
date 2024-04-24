@@ -72,3 +72,10 @@ def user_list(request):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
+    
+@api_view(["GET"])
+def user_detail_by_id(request, user_id):
+    if request.method == "GET":
+        user = get_object_or_404(User, id=user_id)
+        serializer = UserSerializerModel(user)
+        return Response(serializer.data)
