@@ -141,6 +141,7 @@ export class CreateTeamComponent {
           this.userService
             .editUser2(this.currentUser.username, { "isLeader": true , "team" : responseData.name})
             .subscribe((updatedUser: User) => {
+              localStorage.setItem('team_id', String(responseData.id))
               console.log('User data updated successfully:', updatedUser);
 
             }, (error) => {
