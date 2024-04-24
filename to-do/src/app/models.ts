@@ -11,6 +11,13 @@ export interface User {
   team_id: number
 }
 
+export interface Notification{
+  id ?: number
+  message : string,
+  created_at : string,
+  user ?: number
+}
+
 export interface Team {
   id?: number
   name: string

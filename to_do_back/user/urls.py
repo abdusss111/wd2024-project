@@ -10,7 +10,8 @@ urlpatterns = [
     path('users/team/<int:team_id>', user_list_by_team),
     path('login/', MyTokenObtainPairView.as_view()),
     path('token/refresh/', TokenRefreshView.as_view()),
-    path('user/<str:username>', UserDetailView.as_view()),
+    path('users/<str:username>', UserDetailView.as_view()),
+    path('user/<str:username>',user_detail_by_username),
     path('users/', user_list),
     path('users/<int:user_id>/', views.user_detail_by_id, name='user_detail_by_id'),
 

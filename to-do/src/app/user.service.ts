@@ -24,4 +24,7 @@ export class UserService {
     return this.client.put<User>(`${this.BASE_URL}/user/${username}`, userData)
   }
 
+  editUser2(username:string, userData: any): Observable<User>{
+    return this.client.put<User>(`${this.BASE_URL}/users/${username}`, userData)
+  }
 }
