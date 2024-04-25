@@ -90,7 +90,7 @@ export class CreateTeamComponent {
       }
 
       if (user.isLeader) {
-          alert('User is a leader. Select a regular teammate.');
+          alert('User is a other team leader.');
           this.teamForm.reset()
           return false;
       }
