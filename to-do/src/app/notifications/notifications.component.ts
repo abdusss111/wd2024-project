@@ -14,12 +14,12 @@ import { Notification } from '../models';
 })
 export class NotificationsComponent {
   notifications !: Notification[]
-
+  user_id = Number(localStorage.getItem("id"))
   constructor(
     private notificationService: NotificationService,
   ){}
 
   ngOnInit(){
-    this.notificationService.getNotifications().subscribe(notifications => this.notifications = notifications)
+    this.notificationService.getNotificationsByUserId(this.user_id).subscribe(notifications => this.notifications = notifications)
   }
 }
