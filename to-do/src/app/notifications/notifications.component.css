@@ -13,18 +13,19 @@ h1 {
 }
 
 .container {
-    top: 390px;
+    top: 420px;
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-    overflow: hidden;
+    overflow: auto;
     width: 768px;
     max-width: 100%;
     min-height: 530px;
     padding: 20px;
+    height: 450px;
 }
 
 .notifications {
@@ -45,5 +46,4 @@ h1 {
     width: 95%;
     box-sizing: border-box;
 }
-
 

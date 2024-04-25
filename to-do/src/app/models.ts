@@ -1,14 +1,21 @@
 export interface User {
-  value(value: any): string;
-  username: string;
-  id: number;
-  name: string;
-  lastname: string;
-  password: string;
-  email: string;
-  isLeader: boolean;
-  photoUrl: string;
-  team: string;
+  username: string
+  id: number
+  name: string
+  lastname: string
+  password: string
+  email: string
+  isLeader: boolean
+  photoUrl: string
+  team: string
+  team_id: number
+}
+
+export interface Notification{
+  id ?: number
+  message : string,
+  created_at ?: string,
+  user : number
 }
 
 export interface Team {

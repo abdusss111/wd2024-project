@@ -10,7 +10,7 @@ class TaskSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=50, required=True)
     taskText = serializers.CharField(max_length=1000, required=True)
     created_by = serializers.SlugRelatedField('username', queryset=User.objects.all(), required=True)
-    team = serializers.SlugRelatedField('username', queryset=Team.objects.all(), required=False)
+    team = serializers.SlugRelatedField('id', queryset=Team.objects.all(), required=False)
     # file = serializers.FileField()
 
     def create(self, validated_data):

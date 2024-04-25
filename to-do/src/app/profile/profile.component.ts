@@ -64,7 +64,7 @@ export class ProfileComponent implements OnInit {
       photoUrl: this.photoUrl
     };
     this.userService
-      .editUser(String(this.username), updatedUserData)
+      .editUser2(String(this.username), updatedUserData)
       .subscribe((updatedUser: User) => {
         console.log('User data updated successfully:', updatedUser);
 
@@ -79,7 +79,7 @@ export class ProfileComponent implements OnInit {
 
   getUser(){
     this.userService
-      .getUser(String(this.username))
+      .getUser2(String(this.username))
       .subscribe((data: User) => {
         this.name = data.name
         this.surname = data.lastname
