@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Task } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -34,8 +35,8 @@ export class PersonalTasksService {
   // getTasks(): Promise<Map<string, string[]>> {
   //   return Promise.resolve(this.tasks);
   // }
-  getTasks(userId: number): Observable<Map<string, string[]>> {
+  getTasks(userId: number): Observable<Task[]> {
     const url = `${this.baseUrl}/user/${userId}/tasks`;
-    return this.http.get<Map<string, string[]>>(url);
+    return this.http.get<Task[]>(url);
   }
 }
