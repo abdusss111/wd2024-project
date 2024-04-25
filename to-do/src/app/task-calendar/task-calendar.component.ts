@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { scheduler } from 'dhtmlx-scheduler';
-import { PersonalTasksService } from '../personal-tasks/personal-tasks.service';
+import { TaskService } from '../task.service';
 import { Task } from '../models';
 
 @Component({
@@ -18,7 +18,7 @@ import { Task } from '../models';
 export class TaskCalendarComponent implements OnInit {
   @ViewChild('taskCalendarContainer', { static: true })
   schedulerContainer!: ElementRef;
-  constructor(private personalTasksService: PersonalTasksService) {}
+  constructor(private personalTasksService: TaskService) {}
 
   ngOnInit() {
     scheduler.init(this.schedulerContainer.nativeElement, new Date(), 'month');
@@ -26,8 +26,7 @@ export class TaskCalendarComponent implements OnInit {
   }
   loadTasks(): void {
     // Assuming you have the user ID available, replace `userId` with the actual user ID
-    const userId = Number(localStorage.getItem('id')); // Change this to the actual user ID
-    this.personalTasksService.getTasks(userId).subscribe((tasks) => {
+    this.personalTasksService.getTasks().then((tasks) => {
       this.populateScheduler(tasks);
     });
   }

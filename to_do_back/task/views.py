@@ -20,3 +20,13 @@ def task_list_by_user(request, user_id):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(["GET"])
+def tasks_by_user_and_folder(request, user_id, folder_id):
+    try:
+        tasks = Task.objects.filter(created_by=user_id, folder_id=folder_id)
+        serializer = TaskSerializer(tasks, many=True)
+        return Response(serializer.data)
+    except Task.DoesNotExist:
+        return Response({"error": "Tasks not found for the given user and folder IDs"}, status=404)
+
+

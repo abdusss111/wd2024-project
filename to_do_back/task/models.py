@@ -10,7 +10,8 @@ class Task(models.Model):
         on_delete=models.CASCADE,
         related_name='tasks',
         blank=True,
-        null=True
+        null=True,
+        db_column='folder_id'
     )
     deadline = models.DateField()
     title = models.CharField(max_length=255, blank=True, null=True)

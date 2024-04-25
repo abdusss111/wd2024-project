@@ -22,5 +22,15 @@
         </button>
       </ul>
     </div>
+    <div class="tasks_list">
+      <ul *ngFor="let task of tasks">
+        {{
+          task.title
+        }}
+        {{
+          task.taskText
+        }}
+      </ul>
+    </div>
   </div>
 </div>
