@@ -41,3 +41,12 @@ def notification_detail(request, id):
     elif request.method == "DELETE":
         notification.delete()
         return Response({'deleted': True}, status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(["GET"])
+def notifications_users(request, id):
+    if request.method == "GET":
+        notifications = Notification.objects.filter(user_id = id)
+        serializer = NotificationModelSerializer(notifications, many=True)
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
