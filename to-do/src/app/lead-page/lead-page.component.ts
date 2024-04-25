@@ -67,6 +67,7 @@ export class LeadPageComponent implements OnInit {
         deadline: this.deadline,
         title: this.title,
         taskText: this.taskText,
+        team: Number(localStorage.getItem("team_id"))
       };
       this.taskService
         .addTask(Number(localStorage.getItem('currId')), NewTask)

@@ -98,3 +98,13 @@ class UserSerializerModel2(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ("__all__")
+
+
+class UserSerializerModel3(serializers.ModelSerializer):
+    username = serializers.CharField(max_length=50, required=False)
+    password = serializers.CharField(max_length=20, required=False)
+    email = serializers.EmailField(required=False)
+
+    class Meta:
+        model = User
+        fields = ("__all__")

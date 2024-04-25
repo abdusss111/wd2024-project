@@ -7,7 +7,7 @@ from .serializer import (
     UserSerializerModel,
     MyTokenObtainPairSerializer,
     UserSerializer2,
-    UserSerializerModel2
+    UserSerializerModel2, UserSerializerModel3
 )
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.shortcuts import get_object_or_404
@@ -66,12 +66,19 @@ def user_detail_by_username(request, username):
             return Response(serializer.data, status=status.HTTP_201_CREATED)  # Changed status
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-@api_view(["GET"])
+@api_view(["GET", "POST"])
 def user_list(request):
     if request.method == "GET":
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
+    elif request.method == "POST":
+        serializer = UserSerializerModel2(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)  # Changed status
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     
 @api_view(["GET"])
 def user_detail_by_id(request, user_id):
