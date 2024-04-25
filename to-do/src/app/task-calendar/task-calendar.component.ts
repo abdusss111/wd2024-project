@@ -25,7 +25,6 @@ export class TaskCalendarComponent implements OnInit {
     this.loadTasks();
   }
   loadTasks(): void {
-    // Assuming you have the user ID available, replace `userId` with the actual user ID
     this.personalTasksService.getTasks().then((tasks) => {
       this.populateScheduler(tasks);
     });
