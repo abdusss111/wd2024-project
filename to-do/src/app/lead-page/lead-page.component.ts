@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../models';
+import { User, Notification } from '../models';
 import { LeadPageService } from './lead-page.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../user.service';
 import { TaskService } from '../task.service';
+import { NotificationService } from '../notifications/notifications.service';
 
 @Component({
   standalone: true,
@@ -28,7 +29,8 @@ export class LeadPageComponent implements OnInit {
   constructor(
     private leadPageService: LeadPageService,
     private taskService: TaskService,
-    private userService: UserService
+    private userService: UserService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {
@@ -80,6 +82,18 @@ export class LeadPageComponent implements OnInit {
           this.title = '';
           this.selectedUser = '';
         });
+        const notification: Notification = {
+          message: 'Your team assign you a task',
+          user: Number(localStorage.getItem('currId'))
+        };
+
+        // console.log(localStorage.getItem('currId'))
+
+        this.notificationService.createNotification(notification).subscribe(
+          (response) =>{
+            console.log(response)
+          }
+        )
     }
   }
 }
