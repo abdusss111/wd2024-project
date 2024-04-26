@@ -1,21 +1,21 @@
 export interface User {
-  username: string
-  id: number
-  name: string
-  lastname: string
-  password: string
-  email: string
-  isLeader: boolean
-  photoUrl: string
-  team: string
-  team_id: number
+  username: string;
+  id: number;
+  name: string;
+  lastname: string;
+  password: string;
+  email: string;
+  isLeader: boolean;
+  photoUrl: string;
+  team: string;
+  team_id: number;
 }
 
-export interface Notification{
-  id ?: number
-  message : string,
-  created_at ?: string,
-  user : number
+export interface Notification {
+  id?: number;
+  message: string;
+  created_at?: string;
+  user: number;
 }
 
 export interface Team {
@@ -39,4 +39,5 @@ export interface Task {
   deadline: Date;
   folder: string;
   user_id: number;
+  team_id: number;
 }

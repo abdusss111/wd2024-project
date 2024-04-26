@@ -1,6 +1,11 @@
 <div class="persontal_tasks_body">
   <div class="create_task">
-    <input type="text" [(ngModel)]="newFolder" />
+    <input
+      class="folder-input"
+      type="text"
+      placeholder="Folder name"
+      [(ngModel)]="newFolder"
+    />
     <button (click)="onCreateFolder()">Create Folder</button>
   </div>
   <div class="folders_tasks">
@@ -11,15 +16,26 @@
         (mouseenter)="showDeleteButton(i)"
         (mouseleave)="hideDeleteButton(i)"
       >
-        {{
-          folder.name
-        }}
-        <button
-          *ngIf="highlightedFolder === i"
-          (click)="onDeleteFolder(folder.id)"
-        >
-          Remove
-        </button>
+        <li>
+          <div class="folder-info">
+            <span class="folder-icon"></span>
+            {{ folder.name }}
+            <button
+              class="remove-button"
+              *ngIf="highlightedFolder === i"
+              (click)="onDeleteFolder(folder.id)"
+            >
+              Remove
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="tasks_list">
+      <ul *ngFor="let task of tasks">
+        <p class="task-deadline">{{ task.deadline }}</p>
+        <h3 class="task-title">{{ task.title }}</h3>
+        <p class="task-text">{{ task.taskText }}</p>
       </ul>
     </div>
   </div>

@@ -5,6 +5,7 @@ from .models import User, Task
 
 
 class TaskSerializer(serializers.Serializer):
+    folder_id = serializers.PrimaryKeyRelatedField(source='folder', queryset=Folder.objects.all(), required=False)
     folder = serializers.SlugRelatedField(slug_field='name', required=False, queryset=Folder.objects.all())
     deadline = serializers.DateField(required=True)
     title = serializers.CharField(max_length=50, required=True)
