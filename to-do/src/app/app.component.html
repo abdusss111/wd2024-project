@@ -8,7 +8,7 @@
   <ng-container *ngIf="Boolean(localStorage.getItem('logged'))">
     <body>
       <div class="navbar">
-        <div
+        <!-- <div
           class="nav-item"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
@@ -20,7 +20,7 @@
               width="5%"
           /></a>
           <p>Home</p>
-        </div>
+        </div> -->
 
         <div
           class="nav-item"
@@ -149,16 +149,22 @@
     </body>
   </ng-container>
 
-<ng-container *ngIf="!Boolean(localStorage.getItem('logged'))">
-  <div class="navbar">
-    <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-      <a [routerLink]="['/auth']"><img
-        alt="image"
-        src="https://static.vecteezy.com/system/resources/previews/016/895/065/original/login-line-icon-isolated-on-white-background-black-flat-thin-icon-on-modern-outline-style-linear-symbol-and-editable-stroke-simple-and-pixel-perfect-stroke-illustration-vector.jpg"
-        width="5%"
-      ></a>
-      <p>Log in/out</p>
+  <ng-container *ngIf="!Boolean(localStorage.getItem('logged'))">
+    <div class="navbar">
+      <div
+        class="nav-item"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a [routerLink]="['/auth']"
+          ><img
+            alt="image"
+            src="https://static.vecteezy.com/system/resources/previews/016/895/065/original/login-line-icon-isolated-on-white-background-black-flat-thin-icon-on-modern-outline-style-linear-symbol-and-editable-stroke-simple-and-pixel-perfect-stroke-illustration-vector.jpg"
+            width="5%"
+        /></a>
+        <p>Log in/out</p>
+      </div>
     </div>
-  </div>
-</ng-container>
-<router-outlet />
+  </ng-container>
+  <router-outlet />
+</html>
